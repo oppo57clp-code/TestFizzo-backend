@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 // 2. Endpoint untuk Mengambil Semua Daftar Novel
-app.get('/api/novels', async (req, res) => {
+app.get('/api/Novels', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM "Novels" ORDER BY id ASC');
     res.json({ success: true, data: result.rows });
