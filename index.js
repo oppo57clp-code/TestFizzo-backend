@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'Server Aplikasi Novel Fizo Berjalan dengan Baik!' });
 });
 
-app.get('/api/novels', async (req, res) => {
+app.get('/api/Novels', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM "Novels" ORDER BY id ASC');
     res.json({ success: true, data: result.rows });
@@ -27,7 +27,7 @@ app.get('/api/novels', async (req, res) => {
   }
 });
 
-app.get('/api/novels/:novelId/chapters', async (req, res) => {
+app.get('/api/Novels/:novelId/chapters', async (req, res) => {
   try {
     const { novelId } = req.params;
     const result = await pool.query(
