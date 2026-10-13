@@ -1,0 +1,12 @@
+{
+  "name": "testfizzo-backend",
+  "version": "1.0.0",
+  "description": "Backend server for novel app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
