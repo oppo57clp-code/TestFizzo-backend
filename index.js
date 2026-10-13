@@ -13,10 +13,12 @@ const pool = new Pool({
   }
 });
 
+// 1. Endpoint Utama (Cek Server)
 app.get('/', (req, res) => {
   res.json({ message: 'Server Aplikasi Novel Fizo Berjalan dengan Baik!' });
 });
 
+// 2. Endpoint untuk Mengambil Semua Daftar Novel
 app.get('/api/novels', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM "Novels" ORDER BY id ASC');
@@ -27,6 +29,7 @@ app.get('/api/novels', async (req, res) => {
   }
 });
 
+// 3. Endpoint untuk Mengambil Daftar Bab Berdasarkan ID Novel
 app.get('/api/novels/:novelId/chapters', async (req, res) => {
   try {
     const { novelId } = req.params;
@@ -36,11 +39,12 @@ app.get('/api/novels/:novelId/chapters', async (req, res) => {
     );
     res.json({ success: true, data: result.rows });
   } catch (err) {
-    console.error(err);
+    console.error("Error detail:", err);
     res.status(500).json({ success: false, error: 'Gagal mengambil daftar bab', details: err.message });
   }
 });
 
+// 4. Endpoint untuk Membaca Isi Teks Bab Berdasarkan ID Bab
 app.get('/api/chapters/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -52,7 +56,7 @@ app.get('/api/chapters/:id', async (req, res) => {
     
     res.json({ success: true, data: result.rows[0] });
   } catch (err) {
-    console.error(err);
+    console.error("Error detail:", err);
     res.status(500).json({ success: false, error: 'Gagal mengambil isi bab', details: err.message });
   }
 });
@@ -60,4 +64,4 @@ app.get('/api/chapters/:id', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server berjalan di port ${port}`);
 });
-      
+                          
