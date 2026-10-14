@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 // 2. Endpoint untuk Mengambil Semua Daftar Novel
 app.get('/api/novels', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM "Novels" ORDER BY id ASC');
+    const result = await pool.query('SELECT * FROM novels ORDER BY id ASC');
     res.json({ success: true, data: result.rows });
   } catch (err) {
     console.error("Error detail:", err);
@@ -64,4 +64,4 @@ app.get('/api/chapters/:id', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server berjalan di port ${port}`);
 });
-                          
+        
